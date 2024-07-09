@@ -83,5 +83,77 @@
         @endforeach
     </ul>
 
+    <h3>Query 6: Listar el identificador de los empleados junto al nif, pero el nif deberá aparecer en dos
+        columnas, una mostrará únicamente los dígitos del nif y la otra la letra.
+        </h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NIF Digitos</th>
+                    <th>NIF Letras</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($query6 as $employee)
+                <tr>
+                    <td>{{$employee->id}}</td>
+                    <td>{{$employee->nif_digitos}}</td>
+                    <td>{{$employee->nif_letra}}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        <h3>Query 7: Departamentos y Presupuesto Actual</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Departamento</th>
+                <th>Presupuesto Actual</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($query7 as $departamento)
+            <tr>
+                <td>{{ $departamento->name }}</td>
+                <td>{{ number_format($departamento->presupuesto_actual, 2) }} €</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <h3>Query 8: Listar nombre de los departamentos en orden descendiente</h3>
+    <ul>
+        @foreach ($query8 as $department_name)
+        <li>{{ $department_name}}</li>
+        @endforeach
+    </ul>
+
+    <h3>Query 9: Listar los apellidos y el nombre de todos los empleados, ordenados de forma alfabética</h3>
+    <ul>
+        @foreach ($query9 as $full_name)
+        <li>{{ $full_name}}</li>
+        @endforeach
+    </ul>
+
+    <h3>Query 10: 3 Departamentos con mayor Presupuesto Actual</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Departamento</th>
+                    <th>Presupuesto Actual</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($query10 as $departamento)
+                <tr>
+                    <td>{{ $departamento->name }}</td>
+                    <td>{{ number_format($departamento->presupuesto_actual, 2) }} €</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+
 </body>
 </html>

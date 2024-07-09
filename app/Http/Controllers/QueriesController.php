@@ -20,7 +20,7 @@ class QueriesController extends Controller
         $query3 = employee::pluck('department_id');
 
         //Lista el identificador de los departamentos de los empleados que aparecen en la tabla empleado, eliminando los identificadores que aparecen repetidos
-        $query4 = employee::select('department_id')->pluck('department_id');
+        $query4 = employee::select('department_id')->distinct()->pluck('department_id');
 
         //Lista el nombre y apellidos de los empleados en una única columna
         $query5 = employee::selectRaw("CONCAT_WS(' ', first_name, last_name1, last_name2) as full_name")->get();

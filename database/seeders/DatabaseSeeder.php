@@ -10,12 +10,14 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        Department::create(['name' => 'Development', 'budget' => 120000, 'expense' => 6000]);
-        Department::create(['name' => 'Systems', 'budget' => 150000, 'expense' => 5000]);
-        Department::create(['name' => 'Human Resources', 'budget' => 280000, 'expense' => 25000]);
-        Department::create(['name' => 'Accounting', 'budget' => 300000, 'expense' => 10000]);
-        Department::create(['name' => 'Projects', 'budget' => 375000, 'expense' => 380000]);
-        Department::create(['name' => 'Advertising', 'budget' => 0, 'expense' => 0]);
+        Department::create(['name' => 'Desarrollo', 'budget' => 120000, 'expense' => 6000]);
+        Department::create(['name' => 'Sistemas', 'budget' => 150000, 'expense' => 21000]);
+        Department::create(['name' => 'Recursos Humanos', 'budget' => 280000, 'expense' => 25000]);
+        Department::create(['name' => 'Contabilidad', 'budget' => 110000, 'expense' => 3000]);
+        Department::create(['name' => 'I+D', 'budget' => 375000, 'expense' => 380000]);
+        Department::create(['name' => 'Proyectos', 'budget' => 0, 'expense' => 0]);
+        Department::create(['name' => 'Publicidad', 'budget' => 0, 'expense' => 1000]);
+
 
         Employee::create(['nif' => '32481596F', 'first_name' => 'Aarón', 'last_name1' => 'Rivero', 'last_name2' => 'Gómez', 'department_id' => 1]);
         Employee::create(['nif' => 'Y5575632D', 'first_name' => 'Adela', 'last_name1' => 'Salas', 'last_name2' => 'Díaz', 'department_id' => 2]);

@@ -32,7 +32,7 @@ class QueriesController extends Controller
         $query7 = department::selectRaw('name, (budget - expense) as presupuesto_actual')->orderBy('name', 'asc')->get();
 
         //Lista el nombre de todos los departamentos ordenados de forma desscendente
-        $query8 = department::orderBy('name', 'desc')->pluck('name');
+        $query8 = department::orderBy('name', 'desc')->distinct()->pluck('name');
 
         //Lista los apellidos y el nombre de todos los empleados, ordenados de forma alfabética tendiendo en cuenta en primer lugar sus apellidos y luego su nombre.
         $query9 = Employee::selectRaw("CONCAT_WS(' ', last_name1, COALESCE(last_name2, ''), first_name) as full_name")->orderBy('full_name', 'asc')->distinct()->pluck('full_name');

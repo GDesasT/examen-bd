@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         Department::create(['name' => 'Proyectos', 'budget' => 0, 'expense' => 0]);
         Department::create(['name' => 'Publicidad', 'budget' => 0, 'expense' => 1000]);
 
-
+        //comentario solo para que se actualice el seeder
         Employee::create(['nif' => '32481596F', 'first_name' => 'Aarón', 'last_name1' => 'Rivero', 'last_name2' => 'Gómez', 'department_id' => 1]);
         Employee::create(['nif' => 'Y5575632D', 'first_name' => 'Adela', 'last_name1' => 'Salas', 'last_name2' => 'Díaz', 'department_id' => 2]);
         Employee::create(['nif' => 'R6970642B', 'first_name' => 'Adolfo', 'last_name1' => 'Rubio', 'last_name2' => 'Flores', 'department_id' => 3]);

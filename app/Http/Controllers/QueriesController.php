@@ -8,6 +8,11 @@ use App\Models\employee;
 
 class QueriesController extends Controller
 {
+    public function showCreateForm()
+{
+    $departments = department::all();
+    return view('create', compact('departments'));
+}
 
     public function createUser(Request $request)
     {

@@ -18,3 +18,7 @@ Route::get('/queries', [QueriesController::class, 'index'])->name('index');
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/users/create', [QueriesController::class, 'showCreateForm'])->name('users.create_form');
+
+Route::post('/users/create', [QueriesController::class, 'createUser'])->name('users.create');

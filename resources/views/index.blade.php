@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Empleados</title>
+    <title>Listado de Empleados y Departamentos</title>
     <style>
         table {
             border-collapse: collapse;
@@ -20,9 +20,9 @@
     </style>
 </head>
 <body>
-    <h2>Listado de Empleados</h2>
+    <h2>Listado de Empleados y Departamentos</h2>
 
-    <h3>Query 1: Listar todas las columnas de la tabla employees</h3>
+    <h3>Query 1: Listar todas las columnas de la tabla empleados</h3>
     <table>
         <thead>
             <tr>
@@ -69,43 +69,41 @@
         @endforeach
     </ul>
 
-    <h3>Query 4: Listar el identificador de los departamentos de los empleados, eliminando los identificadores que aparecen repetidos</h3>
+    <h3>Query 4: Identificadores únicos de departamentos de empleados</h3>
     <ul>
         @foreach ($query4 as $departmentId)
             <li>{{ $departmentId }}</li>
         @endforeach
     </ul>
 
-    <h3>Query 5: Listar el nombre y apellidos de los empleados en una única columna</h3>
+    <h3>Query 5: Nombre y apellidos en una única columna</h3>
     <ul>
         @foreach ($query5 as $employee)
             <li>{{ $employee->full_name }}</li>
         @endforeach
     </ul>
 
-    <h3>Query 6: Listar el identificador de los empleados junto al nif, pero el nif deberá aparecer en dos
-        columnas, una mostrará únicamente los dígitos del nif y la otra la letra.
-        </h3>
-        <table>
-            <thead>
+    <h3>Query 6: Identificador de empleados junto al NIF en columnas</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NIF Digitos</th>
+                <th>NIF Letras</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($query6 as $employee)
                 <tr>
-                    <th>ID</th>
-                    <th>NIF Digitos</th>
-                    <th>NIF Letras</th>
+                    <td>{{ $employee->id }}</td>
+                    <td>{{ $employee->nif_digitos }}</td>
+                    <td>{{ $employee->nif_letra }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach ($query6 as $employee)
-                <tr>
-                    <td>{{$employee->id}}</td>
-                    <td>{{$employee->nif_digitos}}</td>
-                    <td>{{$employee->nif_letra}}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+            @endforeach
+        </tbody>
+    </table>
 
-        <h3>Query 7: Departamentos y Presupuesto Actual</h2>
+    <h3>Query 7: Departamentos y Presupuesto Actual</h3>
     <table>
         <thead>
             <tr>
@@ -115,45 +113,205 @@
         </thead>
         <tbody>
             @foreach ($query7 as $departamento)
-            <tr>
-                <td>{{ $departamento->name }}</td>
-                <td>{{ number_format($departamento->presupuesto_actual, 2) }} €</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    <h3>Query 8: Listar nombre de los departamentos en orden descendiente</h3>
-    <ul>
-        @foreach ($query8 as $department_name)
-        <li>{{ $department_name}}</li>
-        @endforeach
-    </ul>
-
-    <h3>Query 9: Listar los apellidos y el nombre de todos los empleados, ordenados de forma alfabética</h3>
-    <ul>
-        @foreach ($query9 as $full_name)
-        <li>{{ $full_name}}</li>
-        @endforeach
-    </ul>
-
-    <h3>Query 10: 3 Departamentos con mayor Presupuesto Actual</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Departamento</th>
-                    <th>Presupuesto Actual</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($query10 as $departamento)
                 <tr>
                     <td>{{ $departamento->name }}</td>
                     <td>{{ number_format($departamento->presupuesto_actual, 2) }} €</td>
                 </tr>
-                @endforeach
-            </tbody>
-        </table>
+            @endforeach
+        </tbody>
+    </table>
+
+    <h3>Query 8: Nombres de los departamentos en orden descendente</h3>
+    <ul>
+        @foreach ($query8 as $department_name)
+            <li>{{ $department_name }}</li>
+        @endforeach
+    </ul>
+
+    <h3>Query 9: Apellidos y nombres de empleados en orden alfabético</h3>
+    <ul>
+        @foreach ($query9 as $full_name)
+            <li>{{ $full_name }}</li>
+        @endforeach
+    </ul>
+
+    <h3>Query 10: 3 Departamentos con mayor Presupuesto Actual</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Departamento</th>
+                <th>Presupuesto Actual</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($query10 as $departamento)
+                <tr>
+                    <td>{{ $departamento->name }}</td>
+                    <td>{{ number_format($departamento->presupuesto_actual, 2) }} €</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <h3>Query 11: 3 Departamentos con menor Presupuesto</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Departamento</th>
+                <th>Presupuesto Actual</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($query11 as $departamento)
+                <tr>
+                    <td>{{ $departamento->name }}</td>
+                    <td>{{ number_format($departamento->presupuesto_actual, 2) }} €</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <h3>Query 12: 2 Departamentos con mayor Gasto</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Departamento</th>
+                <th>Gasto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($query12 as $departamento)
+                <tr>
+                    <td>{{ $departamento->name }}</td>
+                    <td>{{ number_format($departamento->expense, 2) }} €</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <h3>Query 13: 2 Departamentos con menor Gasto</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Departamento</th>
+                <th>Gasto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($query13 as $departamento)
+                <tr>
+                    <td>{{ $departamento->name }}</td>
+                    <td>{{ number_format($departamento->expense, 2) }} €</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <h3>Query 14: Departamentos que tienen empleados y su Presupuesto Actual</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Departamento</th>
+                <th>Presupuesto Actual</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($query14 as $departamento)
+                <tr>
+                    <td>{{ $departamento->id }}</td>
+                    <td>{{ $departamento->name }}</td>
+                    <td>{{ number_format($departamento->presupuesto_actual, 2) }} €</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <h3>Query 15: Nombre del departamento donde trabaja el empleado con NIF 38382980M</h3>
+    <p>{{ $query15 }}</p>
+
+    <h3>Query 16: Nombre del departamento donde trabaja Pepe Ruiz Santana</h3>
+    <p>{{ $query16 }}</p>
+
+    <h3>Query 17: Empleados que trabajan en el departamento de I+D</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($query17 as $employee)
+                <tr>
+                    <td>{{ $employee->id }}</td>
+                    <td>{{ $employee->first_name }}</td>
+                    <td>{{ $employee->last_name1 }} {{ $employee->last_name2 }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <h3>Query 18: Empleados en Sistemas, Contabilidad o I+D</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($query18 as $employee)
+                <tr>
+                    <td>{{ $employee->id }}</td>
+                    <td>{{ $employee->first_name }}</td>
+                    <td>{{ $employee->last_name1 }} {{ $employee->last_name2 }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <h3>Query 19: Empleados en departamentos fuera del presupuesto 100,000 - 200,000</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($query19 as $employee)
+                <tr>
+                    <td>{{ $employee->first_name }}</td>
+                    <td>{{ $employee->last_name1 }} {{ $employee->last_name2 }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <h3>Query 20: Todos los empleados con sus departamentos</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Departamento</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($query20 as $employee)
+                <tr>
+                    <td>{{ $employee->id }}</td>
+                    <td>{{ $employee->first_name }}</td>
+                    <td>{{ $employee->last_name1 }} {{ $employee->last_name2 }}</td>
+                    <td>{{ $employee->department->name ?? 'Sin departamento' }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
 </body>
 </html>

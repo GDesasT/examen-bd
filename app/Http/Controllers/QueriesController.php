@@ -8,6 +8,29 @@ use App\Models\employee;
 
 class QueriesController extends Controller
 {
+
+    public function createUser(Request $request)
+    {
+    try{
+        $validatedData =$request->validate([
+            'nif' => 'required|string|max:9',
+            'first_name' => 'required|string|max:255',
+            'last_name1' => 'required|string|max:255',
+            'last_name2' => 'required|string|max:255',
+            'department_id' => 'required|int|max:1',
+        ]);
+        
+        $user = new employee($validatedData);
+        $user->save();
+        
+        return redirect()->back()->with('success', 'Usuario creado exitosamente');
+    }
+
+    catch (\Exception $e){
+    return redirect()->back()->with('error', 'Hubo un error al crear el usuario: ' . $e->getMessage());
+    }
+}
+
     public function index() {
         // Query 1: Listar todas las columnas de la tabla empleados
         $query1 = employee::all();
